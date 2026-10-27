@@ -1,0 +1,9 @@
+Package: com.baiduime.cleaner
+Name: BaiduIMECleaner (百度输入法去广告精简)
+Version: 1.0.0-1
+Architecture: iphoneos-arm64
+Description: 去除百度输入法广告、精简冗余功能模块的 dylib 注入插件
+Maintainer: BaiduIMECleaner <dev@example.com>
+Author: BaiduIMECleaner <dev@example.com>
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000) | ellekit (>= 0.1)

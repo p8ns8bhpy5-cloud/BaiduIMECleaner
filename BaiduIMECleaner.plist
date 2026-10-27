@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Filter</key>
+	<dict>
+		<key>Bundles</key>
+		<array>
+			<!-- 百度输入法键盘扩展（已确认 13.3.18 版本） -->
+			<string>com.baidu.inputMethod.keyboard</string>
+			<!-- 备用：主 App 与其他扩展 -->
+			<string>com.baidu.inputMethod</string>
+			<string>com.baidu.inputMethod.liveactivity</string>
+			<string>com.baidu.inputMethod.notificationcontent</string>
+			<string>com.baidu.inputMethod.notificationservice</string>
+		</array>
+	</dict>
+</dict>
+</plist>

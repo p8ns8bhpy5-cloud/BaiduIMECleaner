@@ -1,0 +1,51 @@
+name: Build BaiduIMECleaner
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    strategy:
+      fail-fast: false
+      matrix:
+        scheme: [rootless, rootful]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Theos
+        run: |
+          sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+          echo "THEOS=/opt/theos" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          brew install ldid make
+          # iOS SDK 已包含在 macOS runner 中
+
+      - name: Build (rootless)
+        if: matrix.scheme == 'rootless'
+        run: |
+          make clean
+          make package THEOS_PACKAGE_SCHEME=rootless
+        env:
+          THEOS: /opt/theos
+
+      - name: Build (rootful)
+        if: matrix.scheme == 'rootful'
+        run: |
+          make clean
+          make package
+        env:
+          THEOS: /opt/theos
+
+      - name: Upload deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BaiduIMECleaner-${{ matrix.scheme }}
+          path: packages/*.deb
+          retention-days: 30
